@@ -1,0 +1,12 @@
+RNA-seq quantification command lines
+
+Kallisto: kallisto quant -i hg19_refseq.idx -o out/ *_1.fastq *_2.fastq
+
+RSEM: rsem-calculate-expression -p 20 --paired-end --bowtie2 *_1.fastq *_2.fastq hg19_refseq out
+
+eXpress: Sort aligned bam file by read name: samtools sort -n -o sorted.bam input.bam
+eXpress quantification: express -o out hg19_refseq.fasta sorted.bam
+
+Cufflinks: Cufflinks quantification: cufflinks -p 8 -o out -G TopHat_hg19/genes.gtf input.bam 
+
+Net-RSTQ: NetRSTQ(lambda,PairedEnd);
