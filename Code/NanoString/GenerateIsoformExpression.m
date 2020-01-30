@@ -1,12 +1,12 @@
 clc
 clear
-load AMatrix;
-load Counts_Normalized Count Probe CellLine;
+load AMatrix; % load indicator matrices
+load Counts_Normalized Count Probe CellLine; % load row counts
 
-G = [];
-T = [];
-P = [];
-D = [];
+G = []; % gene name
+T = []; % transcript name
+P = []; % probe name
+D = []; % data
 
 for i = 1:length(Data)
     probe = Data(i).probe;
@@ -49,6 +49,7 @@ for i = 1:length(Data)
         tmp = cat(1,tmp,Count(idx,:));
     end
     n = length(TT);
+    % run cvx to minimize the objective function (1) in manuscript
     for j = 1:size(tmp,2)
         y = tmp(:,j);
         
