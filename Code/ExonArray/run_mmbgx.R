@@ -1,12 +1,12 @@
 rm(list=ls());
 setwd("/project/compbioRAID1/WeiZhang/ProbeDesign/NanostringData/ExonArray/Data3");
 library(oligo);
-library(mmbgx);
+library(mmbgx); # load MMGBX library
 library(affyio);
 
-d <- read.celfiles(dir(),pkgname="pd.huex.1.0.st.v2");
+d <- read.celfiles(dir(),pkgname="pd.huex.1.0.st.v2"); # run mmbgx to generate isoform expression
 mmbgx(d, arrayType="HuEx-1_0-st-v2",geneLevel=FALSE, inputDirs=paste("transcriptInput", c(1:2), sep="."), standalone=TRUE);
-
+# run mmbgx to generate gene expression
 mmbgx(d, arrayType="HuEx-1_0-st-v2", geneLevel=TRUE, inputDirs=paste("geneInput", c(1:2), sep="."), standalone=TRUE);
 
 #combineRuns.mmbgx(dir("geneRuns1", full.names=TRUE), sampleSets=1, outputDir="gene1");
