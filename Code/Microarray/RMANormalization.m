@@ -10,7 +10,7 @@ SampleName=Information.ColNames;
 clear DataMatrix Information
 
 load GPL570
-% match the gene names with the normalized features
+% match the gene names with the probes
 [c idx idx1]=intersect(GPL570(1:41639,1),GeneName);
 for i=1:41639
     DataAfterSort(idx(i,1),:)=Data(idx1(i,1),:);
@@ -18,6 +18,7 @@ end
 GeneID=GPL570(1:41639,2);
 clear c idx idx1 Data i GPL560 GeneName 
 
+% match the gene names
 k=1;
 n=1;
 A=ones(20827,1);
