@@ -1,5 +1,6 @@
 clc
 clear all
+% RMA normalization
 DataMatrix = affyrma('*', 'HG-U133_Plus_2.cdf','CELPath', '/project/compbioRAID1/WeiZhang/ProbeDesign/NanostringData/Microarray/GEO/celFile','CDFPath', '/project/compbioRAID1/WeiZhang/ProbeDesign/NanostringData/Microarray/GEO/A-AFFY-44.cdf','Output', 'log2');
 Data=double(DataMatrix);
 Information=get(DataMatrix);
@@ -7,9 +8,9 @@ GeneName=Information.RowNames;
 SampleName=Information.ColNames;
 
 clear DataMatrix Information
-% 
-load GPL570
 
+load GPL570
+% match the gene names with the normalized features
 [c idx idx1]=intersect(GPL570(1:41639,1),GeneName);
 for i=1:41639
     DataAfterSort(idx(i,1),:)=Data(idx1(i,1),:);
@@ -32,6 +33,7 @@ for i=1:41638
     end
 end
 
+% generate the gene expression values
 Index=A;
 Data=zeros(size(Index,1),size(SampleName,2));
 n=1;
